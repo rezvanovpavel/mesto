@@ -1,0 +1,23 @@
+.element__button {
+  z-index: 1;
+  min-height: 19px;
+  max-height: 19px;
+  max-width: 22px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  background-image: url("../../../images/heart.svg");
+  border: none;
+  margin: 5px 5px -1px 0;
+  -webkit-transition: opacity 0.3s linear 0.3s;
+  -o-transition: opacity 0.3s linear 0.3s;
+  transition: opacity 0.3s linear 0.3s;
+}
+
+.element__button:hover {
+  opacity: 0.5;
+}
+
+.element__button:active {
+  background-image: url("../../../images/black-heart.svg");
+}

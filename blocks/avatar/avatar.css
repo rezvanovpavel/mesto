@@ -1,0 +1,15 @@
+.avatar {
+  min-height: 120px;
+  max-width: 120px;
+  width: 100%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .avatar {
+    -ms-grid-column-align: center;
+    justify-self: center;
+  }
+}
