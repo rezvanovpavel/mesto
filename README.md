@@ -11,7 +11,7 @@
 
 Используются и другие технологии адаптивной вёрстки.
 
-Ссылка на проект (https://rezvanovpavel.github.io/russian-travel).
+Ссылка на проект (https://rezvanovpavel.github.io/mesto).
 
 
 
