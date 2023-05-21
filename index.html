@@ -23,51 +23,51 @@
           <div class="profile-info">
             <h1 class="profile-info__title">Жак-Ив Кусто</h1>
             <p class="profile-info__text">Исследователь океана</p>
-            <button id="open-popup-button" class="profile-info__edit-button"></button>
+            <button type="button" id="open-popup-button" class="profile-info__edit-button"></button>
           </div>
-          <button class="add-button"></button>
+          <button type="button" class="add-button"></button>
         </section>
         <section class="elements">
           <div class="element">
             <img class="element__landscape" src="./images/photo-grid-atharva-tulsi.jpg" alt="Гора в тумане">
             <div class="element__title-button">
               <h2 class="element__title">Гора в тумане</h2>
-              <button class="element__button"></button>
+              <button type="button" class="element__button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__landscape" src="./images/place-altai.jpg" alt="алтай">
             <div class="element__title-button">
               <h2 class="element__title">Алтай</h2>
-              <button class="element__button"></button>
+              <button type="button" class="element__button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__landscape" src="./images/place-karelia.jpg" alt="карелия">
             <div class="element__title-button">
               <h2 class="element__title">Карелия</h2>
-              <button class="element__button"></button>
+              <button type="button" class="element__button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__landscape" src="./images/place-kolsky.jpg" alt="кольский">
             <div class="element__title-button">
               <h2 class="element__title">Кольский</h2>
-              <button class="element__button"></button>
+              <button type="button" class="element__button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__landscape" src="./images/place-kosa.jpg" alt="коса">
             <div class="element__title-button">
               <h2 class="element__title">Коса</h2>
-              <button class="element__button"></button>
+              <button type="button" class="element__button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__landscape" src="./images/place-winter-baikal.jpg" alt="байкал">
             <div class="element__title-button">
               <h2 class="element__title">Байкал</h2>
-              <button class="element__button"></button>
+              <button type="button" class="element__button"></button>
             </div>
           </div>
         </section>
@@ -77,13 +77,13 @@
       </footer>
       <div id="edit-popup" class="popup">
         <div class="popup__content">
-          <form id="edit-form" class="popup__form">
+          <form id="edit-form" class="popup__form" name="form-edit">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input id="name-input" type="text" class="popup__input">
-            <input id="vocation-input" type="text" class="popup__input">
+            <input id="name-input" type="text" class="popup__input" name="input-name">
+            <input id="vocation-input" type="text" class="popup__input" name="input-vocation">
             <button type="submit" class="popup__save-button">Сохранить</button>
           </form>
-          <button id="close-popup-button" class="popup__close-button"></button>
+          <button type="button" id="close-popup-button" class="popup__close-button"></button>
         </div>
       </div>
     </div>

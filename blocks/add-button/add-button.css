@@ -4,7 +4,7 @@
   width: 100%;
   background-repeat: no-repeat;
   background-image: url("../../images/plus.svg");
-  background-color: #000000;
+  background-color: transparent;
   background-position: center;
   background-size: 22px 22px;
   border: 2px solid #ffffff;
@@ -15,13 +15,14 @@
   -webkit-transition: opacity 0.3s linear 0.3s;
   -o-transition: opacity 0.3s linear 0.3s;
   transition: opacity 0.3s linear 0.3s;
+  cursor: pointer;
 }
 
 .add-button:hover {
   opacity: 0.6;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1066px) {
   .add-button {
     max-width: 282px;
     -ms-grid-column-align: center;

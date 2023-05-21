@@ -7,16 +7,23 @@ const nameInputEl = document.querySelector("#name-input");
 const vocationInputEl = document.querySelector("#vocation-input");
 const editFormEl = document.querySelector("#edit-form");
 
+function openPopup(popup) {
+  popup.classList.add("popup_is-opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_is-opened");
+}
+
 openPopupButtonEl.addEventListener("click", function () {
   openPopup(editPopupEl);
+  nameInputEl.value = profileTitleEl.textContent;
+  vocationInputEl.value = profileTextEl.textContent;
 });
 
 closePopupButtonEl.addEventListener("click", function () {
   closePopup(editPopupEl);
 });
-
-nameInputEl.value = profileTitleEl.textContent;
-vocationInputEl.value = profileTextEl.textContent;
 
 editFormEl.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -24,11 +31,3 @@ editFormEl.addEventListener("submit", function (event) {
   profileTextEl.textContent = vocationInputEl.value;
   closePopup(editPopupEl);
 });
-
-function openPopup(popup) {
-  popup.classList.add("popup_is_opened");
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_is_opened");
-}

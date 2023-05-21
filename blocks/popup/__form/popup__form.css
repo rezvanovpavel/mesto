@@ -6,16 +6,11 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  max-width: 430px;
-  width: 100vw;
   padding: 34px 36px 37px 36px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1066px) {
   .popup__form {
-    max-width: 282px;
     padding: 25px 22px;
   }
 }

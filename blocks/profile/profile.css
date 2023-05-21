@@ -31,14 +31,6 @@
 
 @media screen and (max-width: 1066px) {
   .profile {
-    -ms-grid-columns: 282px;
-    grid-template-columns: 282px;
-    gap: 26px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .profile {
     max-width: 282px;
     width: calc(100% - 38px);
     padding: 42px 0 42px 0;

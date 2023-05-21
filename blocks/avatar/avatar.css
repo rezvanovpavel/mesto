@@ -5,9 +5,11 @@
   background-repeat: no-repeat;
   border-radius: 50%;
   z-index: 1;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1066px) {
   .avatar {
     -ms-grid-column-align: center;
     justify-self: center;

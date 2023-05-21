@@ -3,6 +3,9 @@
   width: calc(100% - 400px);
   padding: 66px 0 60px 0;
   margin: 0 auto;
+  -ms-flex-item-align: end;
+  -ms-grid-row-align: end;
+  align-self: end;
 }
 
 @media screen and (max-width: 767px) {

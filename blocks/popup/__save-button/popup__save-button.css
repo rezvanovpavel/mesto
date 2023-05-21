@@ -13,13 +13,15 @@
   -webkit-transition: opacity 0.3s linear 0.3s;
   -o-transition: opacity 0.3s linear 0.3s;
   transition: opacity 0.3s linear 0.3s;
+  cursor: pointer;
+  padding: 0;
 }
 
 .popup__save-button:hover {
   opacity: 0.8;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1066px) {
   .popup__save-button {
     max-width: 238px;
     font-size: 14px;

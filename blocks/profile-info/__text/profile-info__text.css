@@ -8,7 +8,7 @@
   -ms-grid-column: 1;
   grid-column-start: 1;
   -ms-grid-column-span: 1;
-  grid-column-end: 2;
+  grid-column-end: 3;
   -ms-grid-row: 2;
   grid-row-start: 2;
   -ms-grid-row-span: 1;
@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1066px) {
   .profile-info__text {
     font-size: 14px;
     line-height: 1.21;
