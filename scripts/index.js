@@ -1,6 +1,6 @@
 const openPopupButtonEl = document.querySelector("#open-popup-button");
 const editPopupEl = document.querySelector("#edit-popup");
-const closePopupButtonEl = document.querySelector("#close-popup-button");
+const closePopupButtonEl = document.querySelectorAll(".popup__close-button");
 const profileTitleEl = document.querySelector(".profile-info__title");
 const profileTextEl = document.querySelector(".profile-info__text");
 const nameInputEl = document.querySelector("#name-input");
@@ -21,15 +21,16 @@ openPopupButtonEl.addEventListener("click", function () {
   vocationInputEl.value = profileTextEl.textContent;
 });
 
-closePopupButtonEl.addEventListener("click", function () {
-  closePopup(editPopupEl);
+closePopupButtonEl.forEach((button) => { 
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
 });
+
 
 editFormEl.addEventListener("submit", function (event) {
   event.preventDefault();
   profileTitleEl.textContent = nameInputEl.value;
   profileTextEl.textContent = vocationInputEl.value;
-  closePopup(editPopupEl);
 });
 
 const template = document.querySelector("#element-template"); 
@@ -70,6 +71,7 @@ function createElement (item) {
   elementTitleEl.textContent = item.name;
   const elementLandscapeEl = newElement.querySelector('.element__landscape');
   elementLandscapeEl.src = item.link;
+  elementLandscapeEl.alt = item.name;
 
   const deleteButton = newElement.querySelector('.element__trash');
   deleteButton.addEventListener("click", function () {
@@ -83,17 +85,14 @@ function createElement (item) {
   
   const openPopupButtonImageEl = newElement.querySelector("#open-popup-image-button");
   const editPopupImageEl = document.querySelector("#edit-popup-image");
-  const closePopupButtonImageEl = document.querySelector("#close-popup-image-button");
   const ImagePopupImageEl = document.querySelector(".popup__image");
   const TitlePopupImageEl = document.querySelector(".popup__title_of_image");
 
   openPopupButtonImageEl.addEventListener("click", function () {
     openPopup(editPopupImageEl);
     ImagePopupImageEl.src = item.link;
+    ImagePopupImageEl.alt = item.name;
     TitlePopupImageEl.textContent = item.name;
-  });
-  closePopupButtonImageEl.addEventListener("click", function () {
-    closePopup(editPopupImageEl);
   });
 
   return newElement;
@@ -106,17 +105,12 @@ initialCards.forEach(function (item) {
 
 const openPopupButtonPLaceEl = document.querySelector("#open-popup-button-place");
 const editPopupPlaceEl = document.querySelector("#edit-popup-place");
-const closePopupButtonPlaceEl = document.querySelector("#close-popup-button-place");
 const nameInputPLaceEl = document.querySelector("#name-input-place");
 const linkInputPLaceEl = document.querySelector("#link-input-place");
 const editFormPLaceEl = document.querySelector("#edit-form-place");
 
 openPopupButtonPLaceEl.addEventListener("click", function () {
   openPopup(editPopupPlaceEl);
-});
-
-closePopupButtonPlaceEl.addEventListener("click", function () {
-  closePopup(editPopupPlaceEl);
 });
 
 editFormPLaceEl.addEventListener("submit", function (event) {
@@ -127,7 +121,6 @@ editFormPLaceEl.addEventListener("submit", function (event) {
   const newElement = createElement(values);
   elementsEl.prepend(newElement);
   form.reset()
-  closePopup(editPopupPlaceEl);
 });
 
 
