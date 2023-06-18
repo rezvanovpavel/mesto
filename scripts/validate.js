@@ -28,7 +28,6 @@ const isValid = (formElement, inputElement,validation) => {
     }
 }; 
 
-
 // Функция принимает массив полей
 
 const hasInvalidInput = (inputList) => {
@@ -90,3 +89,18 @@ const enableValidation = (validation) => {
       setEventListeners(formElement,validation);
     });
 };
+
+const disableSubmitButton = (button,validation) => {
+  button.classList.add(validation.inactiveButtonClass);
+};
+
+const enableSubmitButton = (button,validation) => {
+  button.classList.remove(validation.inactiveButtonClass);
+};
+
+const removeValidationErrors = (formElement, validation) => {
+  const inputList = Array.from(formElement.querySelectorAll(validation.inputSelector));
+  inputList.forEach((inputElement) => {
+    hideInputError (formElement, inputElement, validation);
+  });
+}

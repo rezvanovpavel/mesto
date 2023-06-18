@@ -7,7 +7,7 @@ const nameInputEl = document.querySelector("#name-input");
 const vocationInputEl = document.querySelector("#vocation-input");
 const editFormEl = document.querySelector("#edit-form");
 const saveButtonProfileEL = document.querySelector("#save-button-profile");
-
+const allPopupsEl = document.querySelectorAll(".popup");
 
 const validation = {
   formSelector: '.popup__form',
@@ -18,9 +18,6 @@ const validation = {
   errorClass: 'popup__input-error_active'
 }
 
-nameInputEl.value = profileTitleEl.textContent;
-vocationInputEl.value = profileTextEl.textContent;
-
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
 }
@@ -29,16 +26,36 @@ function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
 }
 
+function closePopupEscape (popups) {
+  popups.forEach((popup) => { 
+    document.addEventListener('keydown', function (event) {
+      if (event.key === "Escape") {
+        closePopup(popup)
+      }
+    });
+  });
+};
+
+function closePopupClick (popups) {
+  popups.forEach((popup) => {
+    popup.addEventListener('click', function (event) {
+      if (event.target === event.currentTarget) {
+        closePopup(popup)
+      }
+    });
+  });
+};
+
 openPopupButtonEl.addEventListener("click", function () {
   openPopup(editPopupEl);
   nameInputEl.value = profileTitleEl.textContent;
   vocationInputEl.value = profileTextEl.textContent;
-  hideInputError (editFormEl, nameInputEl, validation);
-  hideInputError (editFormEl, vocationInputEl, validation);
-  saveButtonProfileEL.classList.remove(validation.inactiveButtonClass);
+  removeValidationErrors(editFormEl,validation);
+  enableSubmitButton(saveButtonProfileEL,validation);
   saveButtonProfileEL.removeAttribute('disabled');
+  closePopupEscape(allPopupsEl);
+  closePopupClick(allPopupsEl);
 });
-
 
 closePopupButtonEl.forEach((button) => { 
   const popup = button.closest('.popup');
@@ -46,7 +63,6 @@ closePopupButtonEl.forEach((button) => {
     closePopup(popup);
   });
 });
-
 
 editFormEl.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -60,32 +76,9 @@ const templateContent = template.content;
 const elementEl = templateContent.querySelector('.element');
 const elementsEl = document.querySelector(".elements");
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
+const popupImageEl = document.querySelector("#edit-popup-image");
+const imageZoomedEl = popupImageEl.querySelector(".popup__image");
+const imageCaptionEl = popupImageEl.querySelector(".popup__title_of_image");
 
 function createElement (item) {
   const newElement = elementEl.cloneNode(true);
@@ -106,15 +99,12 @@ function createElement (item) {
   });
   
   const openPopupButtonImageEl = newElement.querySelector("#open-popup-image-button");
-  const editPopupImageEl = document.querySelector("#edit-popup-image");
-  const ImagePopupImageEl = document.querySelector(".popup__image");
-  const TitlePopupImageEl = document.querySelector(".popup__title_of_image");
 
   openPopupButtonImageEl.addEventListener("click", function () {
-    openPopup(editPopupImageEl);
-    ImagePopupImageEl.src = item.link;
-    ImagePopupImageEl.alt = item.name;
-    TitlePopupImageEl.textContent = item.name;
+    openPopup(popupImageEl);
+    imageZoomedEl.src = item.link;
+    imageZoomedEl.alt = item.name;
+    imageCaptionEl.textContent = item.name;
   });
 
   return newElement;
@@ -134,12 +124,12 @@ const saveButtonPlaceEl = document.querySelector("#save-button-place");
 
 openPopupButtonPLaceEl.addEventListener("click", function () {
   openPopup(editPopupPlaceEl);
-  hideInputError (editFormPLaceEl, nameInputPLaceEl, validation);
-  hideInputError (editFormPLaceEl, linkInputPLaceEl, validation);
-  saveButtonPlaceEl.classList.add(validation.inactiveButtonClass);
+  removeValidationErrors(editFormPLaceEl,validation);
+  disableSubmitButton(saveButtonPlaceEl,validation);
   saveButtonPlaceEl.setAttribute('disabled', true);
+  closePopupEscape(allPopupsEl);
+  closePopupClick(allPopupsEl);
 });
-
 
 editFormPLaceEl.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -150,24 +140,6 @@ editFormPLaceEl.addEventListener("submit", function (event) {
   elementsEl.prepend(newElement);
   form.reset()
   closePopup(editPopupPlaceEl);
-});
-
-const allPopupEl = document.querySelectorAll(".popup");
-
-allPopupEl.forEach((popup) => { 
-  document.addEventListener('keydown', function (event) {
-    if (event.key === "Escape") {
-      closePopup(popup)
-    }
-  });
-});
-
-allPopupEl.forEach((popup) => {
-  popup.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-      closePopup(popup)
-    }
-  });
 });
 
 enableValidation(validation);
