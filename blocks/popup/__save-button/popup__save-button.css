@@ -8,7 +8,7 @@
   border-radius: 2px;
   max-width: 358px;
   min-height: 50px;
-  margin: 18px 0 0 0;
+  margin: 48px 0 0 0;
   border: 0;
   -webkit-transition: opacity 0.3s linear 0.3s;
   -o-transition: opacity 0.3s linear 0.3s;
@@ -27,6 +27,6 @@
     font-size: 14px;
     line-height: 1.21;
     min-height: 46px;
-    margin: 15px 0 0 0;
+    margin: 45px 0 0 0;
   }
 }
