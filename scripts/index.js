@@ -7,7 +7,6 @@ const nameInputEl = document.querySelector("#name-input");
 const vocationInputEl = document.querySelector("#vocation-input");
 const editFormEl = document.querySelector("#edit-form");
 const saveButtonProfileEL = document.querySelector("#save-button-profile");
-const allPopupsEl = document.querySelectorAll(".popup");
 
 const validation = {
   formSelector: '.popup__form',
@@ -18,33 +17,31 @@ const validation = {
   errorClass: 'popup__input-error_active'
 }
 
+function closePopupEscape (event) {
+  if (event.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
+  }
+};
+
+function closePopupClick (event) {
+  if (event.target === event.currentTarget) {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
+  }
+};
+
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
+  document.addEventListener('keydown', closePopupEscape);
+  popup.addEventListener('click', closePopupClick);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
+  document.removeEventListener('keydown', closePopupEscape);
+  popup.removeEventListener('click', closePopupClick);
 }
-
-function closePopupEscape (popups) {
-  popups.forEach((popup) => { 
-    document.addEventListener('keydown', function (event) {
-      if (event.key === "Escape") {
-        closePopup(popup)
-      }
-    });
-  });
-};
-
-function closePopupClick (popups) {
-  popups.forEach((popup) => {
-    popup.addEventListener('click', function (event) {
-      if (event.target === event.currentTarget) {
-        closePopup(popup)
-      }
-    });
-  });
-};
 
 openPopupButtonEl.addEventListener("click", function () {
   openPopup(editPopupEl);
@@ -52,9 +49,6 @@ openPopupButtonEl.addEventListener("click", function () {
   vocationInputEl.value = profileTextEl.textContent;
   removeValidationErrors(editFormEl,validation);
   enableSubmitButton(saveButtonProfileEL,validation);
-  saveButtonProfileEL.removeAttribute('disabled');
-  closePopupEscape(allPopupsEl);
-  closePopupClick(allPopupsEl);
 });
 
 closePopupButtonEl.forEach((button) => { 
@@ -126,9 +120,6 @@ openPopupButtonPLaceEl.addEventListener("click", function () {
   openPopup(editPopupPlaceEl);
   removeValidationErrors(editFormPLaceEl,validation);
   disableSubmitButton(saveButtonPlaceEl,validation);
-  saveButtonPlaceEl.setAttribute('disabled', true);
-  closePopupEscape(allPopupsEl);
-  closePopupClick(allPopupsEl);
 });
 
 editFormPLaceEl.addEventListener("submit", function (event) {

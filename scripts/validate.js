@@ -92,10 +92,12 @@ const enableValidation = (validation) => {
 
 const disableSubmitButton = (button,validation) => {
   button.classList.add(validation.inactiveButtonClass);
+  button.setAttribute('disabled', true);
 };
 
 const enableSubmitButton = (button,validation) => {
   button.classList.remove(validation.inactiveButtonClass);
+  button.removeAttribute('disabled');
 };
 
 const removeValidationErrors = (formElement, validation) => {
