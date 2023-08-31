@@ -8,9 +8,8 @@
     <meta name="author" content="Павел Резванов">
     <title>Mesto: базовая функциональность</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script src="./scripts/validate.js" defer></script>
     <script src="./scripts/constants.js"></script>
-    <script src="./scripts/index.js" defer></script>
+    <script type = "module" src="./scripts/index.js" defer></script>
   </head>
   <body>
     <div class="page">
@@ -28,7 +27,7 @@
           <button type="button" id="open-popup-button-place" class="add-button"></button>
         </section>
         <section class="elements">
-          <template id ="element-template">
+          <template class =card-template id ="element-template">
             <article class="element">
               <img class="element__landscape" id="open-popup-image-button" src = "#" alt="картинка карточки">
               <button type="button" class="element__trash"></button>

@@ -1,3 +1,6 @@
+import {Card} from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
+
 const openPopupButtonEl = document.querySelector("#open-popup-button");
 const editPopupEl = document.querySelector("#edit-popup");
 const closePopupButtonEl = document.querySelectorAll(".popup__close-button");
@@ -17,6 +20,11 @@ const validation = {
   errorClass: 'popup__input-error_active'
 }
 
+Array.from(document.querySelectorAll(validation.formSelector)).forEach(function (item) {
+  const form = new FormValidator(validation, item);
+  const validForm = form.enableValidation();
+})
+
 function closePopupEscape (event) {
   if (event.key === "Escape") {
     const openedPopup = document.querySelector(".popup_is-opened");
@@ -31,7 +39,7 @@ function closePopupClick (event) {
   }
 };
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("popup_is-opened");
   document.addEventListener('keydown', closePopupEscape);
   popup.addEventListener('click', closePopupClick);
@@ -47,8 +55,9 @@ openPopupButtonEl.addEventListener("click", function () {
   openPopup(editPopupEl);
   nameInputEl.value = profileTitleEl.textContent;
   vocationInputEl.value = profileTextEl.textContent;
-  removeValidationErrors(editFormEl,validation);
-  enableSubmitButton(saveButtonProfileEL,validation);
+  const form = new FormValidator(validation, editFormEl);
+  const removalValidationErrors = form.removeValidationErrors();
+  const enablingSubmitButton = form.enableSubmitButton();
 });
 
 closePopupButtonEl.forEach((button) => { 
@@ -65,61 +74,27 @@ editFormEl.addEventListener("submit", function (event) {
   closePopup(editPopupEl);
 });
 
-const template = document.querySelector("#element-template"); 
-const templateContent = template.content;
-const elementEl = templateContent.querySelector('.element');
-const elementsEl = document.querySelector(".elements");
-
-const popupImageEl = document.querySelector("#edit-popup-image");
-const imageZoomedEl = popupImageEl.querySelector(".popup__image");
-const imageCaptionEl = popupImageEl.querySelector(".popup__title_of_image");
-
-function createElement (item) {
-  const newElement = elementEl.cloneNode(true);
-  const elementTitleEl = newElement.querySelector('.element__title');
-  elementTitleEl.textContent = item.name;
-  const elementLandscapeEl = newElement.querySelector('.element__landscape');
-  elementLandscapeEl.src = item.link;
-  elementLandscapeEl.alt = item.name;
-
-  const deleteButton = newElement.querySelector('.element__trash');
-  deleteButton.addEventListener("click", function () {
-    elementsEl.removeChild(newElement);
-  })
-  
-  const likeButtonEl = newElement.querySelector(".element__button");
-  likeButtonEl.addEventListener("click", function (event) {
-    event.target.classList.toggle('element__button_active');
-  });
-  
-  const openPopupButtonImageEl = newElement.querySelector("#open-popup-image-button");
-
-  openPopupButtonImageEl.addEventListener("click", function () {
-    openPopup(popupImageEl);
-    imageZoomedEl.src = item.link;
-    imageZoomedEl.alt = item.name;
-    imageCaptionEl.textContent = item.name;
-  });
-
-  return newElement;
-};
+export const elementsEl = document.querySelector(".elements");
+export const popupImageEl = document.querySelector("#edit-popup-image");
+export const imageZoomedEl = popupImageEl.querySelector(".popup__image");
+export const imageCaptionEl = popupImageEl.querySelector(".popup__title_of_image");
 
 initialCards.forEach(function (item) {
-  const newElement = createElement(item);
-  elementsEl.prepend(newElement);
+  const card = new Card(item, '.card-template');
+  const cardElement = card.generateCard();
+  elementsEl.prepend(cardElement);
 })
 
 const openPopupButtonPLaceEl = document.querySelector("#open-popup-button-place");
 const editPopupPlaceEl = document.querySelector("#edit-popup-place");
-const nameInputPLaceEl = document.querySelector("#name-input-place");
-const linkInputPLaceEl = document.querySelector("#link-input-place");
 const editFormPLaceEl = document.querySelector("#edit-form-place");
 const saveButtonPlaceEl = document.querySelector("#save-button-place");
 
 openPopupButtonPLaceEl.addEventListener("click", function () {
   openPopup(editPopupPlaceEl);
-  removeValidationErrors(editFormPLaceEl,validation);
-  disableSubmitButton(saveButtonPlaceEl,validation);
+  const form = new FormValidator(validation, editFormPLaceEl);
+  const removalValidationErrors = form.removeValidationErrors();
+  const disablingSubmitButton = form.disableSubmitButton();
 });
 
 editFormPLaceEl.addEventListener("submit", function (event) {
@@ -127,10 +102,9 @@ editFormPLaceEl.addEventListener("submit", function (event) {
   const form = event.target;
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  const newElement = createElement(values);
-  elementsEl.prepend(newElement);
+  const card = new Card(values, '.card-template');
+  const cardElement = card.generateCard();
+  elementsEl.prepend(cardElement);
   form.reset()
   closePopup(editPopupPlaceEl);
 });
-
-enableValidation(validation);
