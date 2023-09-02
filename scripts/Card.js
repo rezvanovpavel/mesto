@@ -1,4 +1,5 @@
-import { openPopup,elementsEl,popupImageEl,imageZoomedEl,imageCaptionEl } from './index.js';
+import {openPopup} from './utils/utils.js';
+import {elementsEl,popupImageEl,imageZoomedEl,imageCaptionEl} from './utils/constants.js';
 
 export class Card {
   constructor(data, templateSelector) {
@@ -27,6 +28,7 @@ export class Card {
  
    // Добавим данные
    this._element.querySelector('.element__title').textContent = this._name;
+   this._element.querySelector('.element__landscape').alt = this._name;
    this._element.querySelector('.element__landscape').src = this._link;
    
    // Вернём элемент наружу

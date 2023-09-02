@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -24,3 +24,8 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ]; 
+
+export const elementsEl = document.querySelector(".elements");
+export const popupImageEl = document.querySelector("#edit-popup-image");
+export const imageZoomedEl = popupImageEl.querySelector(".popup__image");
+export const imageCaptionEl = popupImageEl.querySelector(".popup__title_of_image");
