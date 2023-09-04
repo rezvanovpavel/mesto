@@ -24,12 +24,13 @@ export class Card {
    // Запишем разметку в приватное поле _element. 
    // Так у других элементов появится доступ к ней.
    this._element = this._getTemplate();
+   this._landscapeEl = this._element.querySelector('.element__landscape')
    this._setEventListeners();
  
    // Добавим данные
    this._element.querySelector('.element__title').textContent = this._name;
-   this._element.querySelector('.element__landscape').alt = this._name;
-   this._element.querySelector('.element__landscape').src = this._link;
+   this._landscapeEl.alt = this._name;
+   this._landscapeEl.src = this._link;
    
    // Вернём элемент наружу
    return this._element;

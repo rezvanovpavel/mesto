@@ -21,15 +21,15 @@ const validation = {
   errorClass: 'popup__input-error_active'
 }
 
-const exemplarEditFormEl = new FormValidator(validation, editFormEl);
-exemplarEditFormEl.enableValidation()
+const validatorEditProfile = new FormValidator(validation, editFormEl);
+validatorEditProfile.enableValidation()
 
 openPopupButtonEl.addEventListener("click", function () {
   openPopup(editPopupEl);
   nameInputEl.value = profileTitleEl.textContent;
   vocationInputEl.value = profileTextEl.textContent;
-  exemplarEditFormEl.removeValidationErrors();
-  exemplarEditFormEl.enableSubmitButton();
+  validatorEditProfile.removeValidationErrors();
+  validatorEditProfile.enableSubmitButton();
 });
 
 closePopupButtonEl.forEach((button) => { 
@@ -61,13 +61,13 @@ const openPopupButtonPLaceEl = document.querySelector("#open-popup-button-place"
 const editPopupPlaceEl = document.querySelector("#edit-popup-place");
 const editFormPLaceEl = document.querySelector("#edit-form-place");
 
-const exemplarEditFormPLaceEl = new FormValidator(validation, editFormPLaceEl);
-exemplarEditFormPLaceEl.enableValidation()
+const validatorAddCard = new FormValidator(validation, editFormPLaceEl);
+validatorAddCard.enableValidation()
 
 openPopupButtonPLaceEl.addEventListener("click", function () {
   openPopup(editPopupPlaceEl);
-  exemplarEditFormPLaceEl.removeValidationErrors();
-  exemplarEditFormPLaceEl.disableSubmitButton();
+  validatorAddCard.removeValidationErrors();
+  validatorAddCard.disableSubmitButton();
 });
 
 editFormPLaceEl.addEventListener("submit", function (event) {
