@@ -1,11 +1,11 @@
-import {openPopup} from './utils/utils.js';
-import {elementsEl,popupImageEl,imageZoomedEl,imageCaptionEl} from './utils/constants.js';
+import {elementsEl} from '../utils/constants.js';
 
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor(data, templateSelector,handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -43,12 +43,8 @@ export class Card {
    this._element.querySelector(".element__button").addEventListener('click', (event) => {
     event.target.classList.toggle('element__button_active');
    });
-   this._element.querySelector("#open-popup-image-button").addEventListener("click", () => {
-    openPopup(popupImageEl);
-    imageZoomedEl.src = this._link;
-    imageZoomedEl.alt = this._name;
-    imageCaptionEl.textContent = this._name;
-   });
+   this._element.querySelector("#open-popup-image-button").addEventListener("click", () => 
+    this._handleCardClick(this._name,this._link));
   }
 }
 
