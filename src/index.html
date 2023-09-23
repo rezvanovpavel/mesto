@@ -7,7 +7,7 @@
     <meta name="keywords" content="html, css, javascript">
     <meta name="author" content="Павел Резванов">
     <title>Mesto: базовая функциональность</title>
-    <script type = "module" src="../src/index.js" defer></script>
+    <script type = "module" src="./pages/index.js" defer></script>
   </head>
   <body>
     <div class="page">
@@ -16,7 +16,7 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img class="avatar" src="<%=require('../images/jacques.jpg')%>" alt="аватар">
+          <img class="avatar" src="<%=require('./images/jacques.jpg')%>" alt="аватар">
           <div class="profile-info">
             <h1 class="profile-info__title">Жак-Ив Кусто</h1>
             <p class="profile-info__text">Исследователь океана</p>
@@ -25,7 +25,7 @@
           <button type="button" id="open-popup-button-place" class="add-button"></button>
         </section>
         <section class="elements">
-          <template class =card-template id ="element-template">
+          <template class = "card-template" id ="element-template">
             <article class="element">
               <img class="element__landscape" id="open-popup-image-button" src = "#" alt="картинка карточки">
               <button type="button" class="element__trash"></button>

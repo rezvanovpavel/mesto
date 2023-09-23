@@ -1,5 +1,3 @@
-import {elementsEl} from '../utils/constants.js';
-
 export default class Card {
   constructor(data, templateSelector,handleCardClick) {
     this._title = data.title;
@@ -11,7 +9,7 @@ export default class Card {
   _getTemplate() {
    // забираем разметку из HTML и клонируем элемент
    const cardElement = document
-   .querySelector("#element-template")
+   .querySelector(this._templateSelector)
    .content
    .querySelector('.element')
    .cloneNode(true);
@@ -25,6 +23,9 @@ export default class Card {
    // Так у других элементов появится доступ к ней.
    this._element = this._getTemplate();
    this._landscapeEl = this._element.querySelector('.element__landscape')
+   this._likeButton = this._element.querySelector(".element__button");
+   this._trashButton = this._element.querySelector('.element__trash');
+   this._cardImage = this._element.querySelector("#open-popup-image-button") 
    this._setEventListeners();
  
    // Добавим данные
@@ -37,14 +38,23 @@ export default class Card {
   }
 
   _setEventListeners() {
-   this._element.querySelector('.element__trash').addEventListener('click', () => {
-    elementsEl.removeChild(this._element);
-   });
-   this._element.querySelector(".element__button").addEventListener('click', (event) => {
-    event.target.classList.toggle('element__button_active');
-   });
-   this._element.querySelector("#open-popup-image-button").addEventListener("click", () => 
-    this._handleCardClick(this._title,this._link));
+   this._trashButton.addEventListener('click', () => this._handleTrashCard());
+   
+   this._cardImage.addEventListener("click", () => this._handleInfoCard());
+
+   this._likeButton.addEventListener('click', () => this._handleLikeCard());
+  }
+
+  _handleLikeCard() {
+    this._likeButton.classList.toggle('element__button_active');
+  }
+
+  _handleTrashCard() {
+   this._element.remove();
+  }
+  
+  _handleInfoCard() {
+   this._handleCardClick(this._title,this._link);
   }
 }
 
