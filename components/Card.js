@@ -2,7 +2,7 @@ import {elementsEl} from '../utils/constants.js';
 
 export default class Card {
   constructor(data, templateSelector,handleCardClick) {
-    this._name = data.name;
+    this._title = data.title;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -28,8 +28,8 @@ export default class Card {
    this._setEventListeners();
  
    // Добавим данные
-   this._element.querySelector('.element__title').textContent = this._name;
-   this._landscapeEl.alt = this._name;
+   this._element.querySelector('.element__title').textContent = this._title;
+   this._landscapeEl.alt = this._title;
    this._landscapeEl.src = this._link;
    
    // Вернём элемент наружу
@@ -44,7 +44,7 @@ export default class Card {
     event.target.classList.toggle('element__button_active');
    });
    this._element.querySelector("#open-popup-image-button").addEventListener("click", () => 
-    this._handleCardClick(this._name,this._link));
+    this._handleCardClick(this._title,this._link));
   }
 }
 

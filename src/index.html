@@ -7,8 +7,7 @@
     <meta name="keywords" content="html, css, javascript">
     <meta name="author" content="Павел Резванов">
     <title>Mesto: базовая функциональность</title>
-    <link rel="stylesheet" href="./pages/index.css">
-    <script type = "module" src="./pages/index.js" defer></script>
+    <script type = "module" src="../src/index.js" defer></script>
   </head>
   <body>
     <div class="page">
@@ -17,7 +16,7 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img class="avatar" src="./images/jacques.jpg" alt="аватар">
+          <img class="avatar" src="<%=require('../images/jacques.jpg')%>" alt="аватар">
           <div class="profile-info">
             <h1 class="profile-info__title">Жак-Ив Кусто</h1>
             <p class="profile-info__text">Исследователь океана</p>
@@ -45,9 +44,9 @@
         <div class="popup__content">
           <form id="edit-form" class="popup__form" name="form-edit" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input id="name-input" type="text" class="popup__input" name="input-name" minlength= 2 maxlength = 40 required>
+            <input id="name-input" type="text" class="popup__input" name="name" minlength= 2 maxlength = 40 required>
             <span class="name-input-error popup__input-error"></span>
-            <input id="vocation-input" type="text" class="popup__input" name="input-vocation" minlength= 2 maxlength = 200 required>
+            <input id="vocation-input" type="text" class="popup__input" name="vocation" minlength= 2 maxlength = 200 required>
             <span class="vocation-input-error popup__input-error"></span>
             <button id="save-button-profile" type="submit" class="popup__save-button">Сохранить</button>
           </form>
@@ -59,7 +58,7 @@
       <div class="popup__content">
         <form id="edit-form-place" class="popup__form" name="form-edit" novalidate>
           <h2 class="popup__title">Новое место</h2>
-          <input id="name-input-place" type="text" class="popup__input" name="name" placeholder="Название" minlength= 2 maxlength = 30 required>
+          <input id="name-input-place" type="text" class="popup__input" name="title" placeholder="Название" minlength= 2 maxlength = 30 required>
           <span class="name-input-place-error popup__input-error"></span>
           <input id="link-input-place" type="url" class="popup__input" name="link" placeholder="Ссылка на картинку" required>
           <span class="link-input-place-error popup__input-error"></span>
