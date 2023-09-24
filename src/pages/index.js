@@ -37,10 +37,9 @@ const popupEditProfile = new PopupWithForm("#edit-popup", (formData) => {
 
 popupEditProfile.setEventListeners()
 
-const userData = userInfo.getUserInfo();
-
 openPopupButtonEl.addEventListener("click", function () {
   popupEditProfile.open()
+  const userData = userInfo.getUserInfo();
   nameInputEl.value = userData.name;
   vocationInputEl.value = userData.text;
   validatorEditProfile.removeValidationErrors();
