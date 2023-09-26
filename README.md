@@ -13,7 +13,7 @@
 
 Используются и другие технологии адаптивной вёрстки.
 
-Ссылка на проект (https://rezvanovpavel.github.io/rezvanovpavel).
+Ссылка на проект (https://github.com/rezvanovpavel/mesto.git).
 
 
 
