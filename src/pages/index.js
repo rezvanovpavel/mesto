@@ -1,4 +1,4 @@
-import {openPopupButtonEl,nameInputEl,vocationInputEl,editFormEl,openPopupButtonPlaceEl,formAddPlaceEl,cardsContainer,initialCards,validationConfig} from '../utils/constants.js';
+import {openPopupButtonEl,nameInputEl,vocationInputEl,editFormEl,openPopupButtonPlaceEl,formAddPlaceEl,cardsContainer,initialCards,validationConfig,profileNameEl,profileProfessionEl,profileAvatarEl} from '../utils/constants.js';
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import Section from '../components/Section.js';
@@ -6,6 +6,19 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css';
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-76/users/me', {
+  headers: {
+    authorization: '2b52f1b0-3bb6-4cb3-80b0-6964df8bffb9'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    profileNameEl.textContent = result.name;
+    profileProfessionEl.textContent = result.about;
+    profileAvatarEl.src = result.avatar;
+  }); 
+
 
 const validatorEditProfile = new FormValidator(validationConfig, editFormEl);
 const validatorAddCard = new FormValidator(validationConfig, formAddPlaceEl);

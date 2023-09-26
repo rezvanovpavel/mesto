@@ -50,3 +50,7 @@ export const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 }
+
+export const profileNameEl = document.querySelector(".profile-info__title");
+export const profileProfessionEl = document.querySelector(".profile-info__text");
+export const profileAvatarEl = document.querySelector(".avatar");
