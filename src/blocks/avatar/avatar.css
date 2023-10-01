@@ -1,5 +1,5 @@
 .avatar {
-  max-height: 120px;
+  min-height: 120px;
   max-width: 120px;
   width: 100%;
   background-repeat: no-repeat;
@@ -9,6 +9,7 @@
   object-fit: cover;
   -o-object-position: center;
   object-position: center;
+  position: relative;
 }
 
 @media screen and (max-width: 1066px) {

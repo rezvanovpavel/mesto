@@ -1,0 +1,12 @@
+.avatar-button {
+  position: relative;
+  -webkit-transition: opacity 0.3s linear 0.3s;
+  -o-transition: opacity 0.3s linear 0.3s;
+  transition: opacity 0.3s linear 0.3s;
+  cursor: pointer;
+}
+
+.avatar-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0.6;
+}

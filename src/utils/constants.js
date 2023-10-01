@@ -1,30 +1,3 @@
-export const initialCards = [
-    {
-      title: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      title: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      title: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      title: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      title: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      title: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]; 
-
 export const openPopupButtonEl = document.querySelector("#open-popup-button");
 export const closePopupButtonEl = document.querySelectorAll(".popup__close-button");
 export const profileTitleEl = document.querySelector(".profile-info__title");
@@ -54,3 +27,11 @@ export const validationConfig = {
 export const profileNameEl = document.querySelector(".profile-info__title");
 export const profileProfessionEl = document.querySelector(".profile-info__text");
 export const profileAvatarEl = document.querySelector(".avatar");
+
+export const formUpdateAvatarEl = document.querySelector("#update-form-аvatar");
+
+export const openPopupButtonAvatarEl = document.querySelector(".avatar-button__edit-button");
+
+export const buttonSaveProfileEl = document.querySelector("#save-button-profile");
+export const buttonSavePlaceEl = document.querySelector("#save-button-place");
+export const buttonSaveAvatarEl = document.querySelector("#save-button-аvatar");
