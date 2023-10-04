@@ -8,6 +8,7 @@ import PopupConsent from '../components/PopupConsent.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import './index.css';
+import {showLoading} from '../utils/utils.js';
 
 const userInfo = new UserInfo({nameEl: profileNameEl, textEl: profileProfessionEl, avatarEl: profileAvatarEl});
 
@@ -21,20 +22,17 @@ const api = new Api({
  }
 });
 
-api.getUserInfo()
-  .then((result) => {
-   userInfo.saveFullInfo(result)
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then((results) => {
+   userInfo.saveFullInfo(results[0])
    userInfo.setUserName()
    userInfo.setUserProfession()
    userInfo.setUserAvatar()
-  })
-  .catch((err) => {
-   console.log(err);
-  }); 
-
-api.getInitialCards()
-  .then((result) => {
-   cardsSection.renderItems(result);
+   
+   cardsSection.renderItems(results[1].reverse());
   })
   .catch((err) => {
    console.log(err);
@@ -47,11 +45,11 @@ validatorAddCard.enableValidation()
 
 const cards = {};
 
-
 function createCard (data) {
   const card = new Card(data, "#element-template", handleCardClick, handleDeleteCard, handleLikeCard, userInfo.id);
   cards[data._id] = card; 
   const cardElement = card.generateCard();
+  cardsSection.addItem(cardElement);
   return cardElement;
 }
 
@@ -63,31 +61,26 @@ function handleCardClick (name, link) {
 };
 
 const popupEditProfile = new PopupWithForm("#edit-popup", (formData) => {
+  showLoading(true,buttonSaveProfileEl)
   api.updateUserInfo(formData)
     .then((result) => {
      userInfo.saveFullInfo(result)
      userInfo.setUserName()
      userInfo.setUserProfession()
-     
+     popupEditProfile.close()
     })
     .catch((err) => {
      console.log(err);
     })
     .finally(() => {
-     showLoading(buttonSaveProfileEl)
-     popupEditProfile.close()
+     showLoading(false,buttonSaveProfileEl)
     });
 });
-
-function showLoading (button) {
- button.textContent = "Сохранение..."
-}
 
 popupEditProfile.setEventListeners()
 
 openPopupButtonEl.addEventListener("click", function () {
   popupEditProfile.open()
-  buttonSaveProfileEl.textContent = "Сохранить"
   const userData = userInfo.getUserInfo();
   nameInputEl.value = userData.name;
   vocationInputEl.value = userData.about;
@@ -96,16 +89,17 @@ openPopupButtonEl.addEventListener("click", function () {
 });
 
 const popupAddPlace = new PopupWithForm("#edit-popup-place", (formData) => {
+  showLoading(true,buttonSavePlaceEl)
   api.addNewCards(formData)
     .then(res => {
      cardsSection.addItem(createCard(res));
+     popupAddPlace.close();
     })
     .catch((err) => {
      console.log(err);
     })
     .finally(() => {
-     showLoading(buttonSavePlaceEl)
-     popupAddPlace.close()
+     showLoading(false,buttonSavePlaceEl)
     });  
 }); 
 
@@ -113,7 +107,6 @@ popupAddPlace.setEventListeners()
 
 openPopupButtonPlaceEl.addEventListener("click", function () {
   popupAddPlace.open()
-  buttonSavePlaceEl.textContent = "Создать"
   validatorAddCard.removeValidationErrors();
   validatorAddCard.disableSubmitButton();
 });
@@ -121,12 +114,12 @@ openPopupButtonPlaceEl.addEventListener("click", function () {
 const popupConsent = new PopupConsent("#delete-popup-card", (cardId) => {
  api.deleteCard(cardId)
    .then(() => {
-    cards[cardId].handleTrashCard()
+    cards[cardId].handleTrashCard();
+    popupConsent.close();
    })
    .catch((err) => {
     console.log(err);
    });
- popupConsent.close();
 })
 
 popupConsent.setEventListeners()
@@ -141,23 +134,23 @@ validatorUpdateAvatar.enableValidation()
 
 openPopupButtonAvatarEl.addEventListener("click", function () {
  popupUpdateAvatar.open()
- buttonSaveAvatarEl.textContent = "Сохранить"
  validatorUpdateAvatar.removeValidationErrors();
  validatorUpdateAvatar.disableSubmitButton();
 });
 
 const popupUpdateAvatar = new PopupWithForm("#update-popup-аvatar", (formData) => {
+ showLoading(true,buttonSaveAvatarEl)
  api.editAvatar(formData.link)
    .then(res => {
     userInfo.saveFullInfo(res)
     userInfo.setUserAvatar()
+    popupUpdateAvatar.close()
    })
    .catch((err) => {
     console.log(err);
    })
    .finally(() => {
-    showLoading(buttonSaveAvatarEl)
-    popupUpdateAvatar.close()
+    showLoading(false,buttonSaveAvatarEl)
    });
 }); 
 
