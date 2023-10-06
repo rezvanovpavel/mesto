@@ -11,10 +11,3 @@
   object-position: center;
   position: relative;
 }
-
-@media screen and (max-width: 1066px) {
-  .avatar {
-    -ms-grid-column-align: center;
-    justify-self: center;
-  }
-}

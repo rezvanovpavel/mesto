@@ -10,3 +10,10 @@
   background-color: rgba(0, 0, 0, 0.8);
   opacity: 0.6;
 }
+
+@media screen and (max-width: 1066px) {
+  .avatar-button {
+    -ms-grid-column-align: center;
+    justify-self: center;
+  }
+}
